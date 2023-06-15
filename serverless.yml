@@ -1,0 +1,92 @@
+service: validkube
+
+provider:
+  name: aws
+  ecr:
+    images:
+      validkube:
+        path: ./
+        platform: linux/amd64
+  runtime: go1.x
+  stage: production
+  timeout: 30
+  region: us-east-1
+  memorySize: 256 # 1MB increments, minimum 128, affects pricing
+  architecture: x86_64
+  environment:
+    ALLOWED_ORIGIN: https://validkube.com
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./backend/**
+
+# Endpoint config
+functions:
+  Hello:
+    handler: bin/lambda
+    events:
+      - http:
+          path: /hello
+          method: get
+          cors: true
+  Neating:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /kubeneat
+          method: post
+          cors: true
+  TrivyConfig:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /trivy/config
+          method: post
+          cors: true
+  TrivySBOM:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /trivy/sbom
+          method: post
+          cors: true                   
+  Kubeval:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /kubeval
+          method: post
+          cors: true        
+  Polaris:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /polaris
+          method: post
+          cors: true
+  Kubescape:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /kubescape
+          method: post
+          cors: true          
+  Kubeconform:
+    image:
+      name: validkube
+    events:
+      - http:
+          path: /kubeconform
+          method: post
+          cors: true                
+
+resources:
+  - ${file(s3-bucket.yml)}
