@@ -20,8 +20,8 @@ Pull requests are the best way to propose new tools and propose new feature to t
 ## Any contributions you make will be under the Apache 2 Software License
 In short, when you submit code changes, your submissions are understood to be under the same [Apache 2 License](http://www.apache.org/licenses/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using Github's [issues](https://github.com/komodorio/validkube/issues)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/komodorio/validkube/issues); it's that easy!
+## Report bugs using Github's [issues](https://github.com/awsautomation/k8s-file-validator/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/awsautomation/k8s-file-validator/issues); it's that easy!
 
 ## Write bug reports with detail, background, and screenshots
 
